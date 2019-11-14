@@ -8,7 +8,7 @@ class Product extends React.Component {
   }
 
   async componentDidMount() {
-    const product = await axios.get(`http://localhost:5000/products/${this.props.match.params.id}`)
+    const product = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${this.props.match.params.id}`)
     this.setState({
       product: product.data
     })

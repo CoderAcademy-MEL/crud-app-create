@@ -10,7 +10,7 @@ class App extends React.Component {
 
   formSubmit = async (product, history) => {
     try {
-      const newProduct = await axios.post("http://localhost:5000/products", product)
+      const newProduct = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/products`, product)
       this.setState((prevState) => ({
         products: [...prevState.products, newProduct.data] 
       }), () => {
@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   handleProductDelete = async (id, history) => {
-    await axios.delete(`http://localhost:5000/products/${id}`)
+    await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/products/${id}`)
     this.setState((prevState) => ({
       products: prevState.products.filter((product) => id !== product._id)  
     }), () => {
@@ -31,7 +31,7 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await fetch("http://localhost:5000/products")
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products`)
     const products = await response.json()
     this.setState({
       products

@@ -7,7 +7,7 @@ class EditProduct extends React.Component {
   }
 
   async componentDidMount() {
-    const product = await axios.get(`http://localhost:5000/products/${this.props.match.params.id}`)
+    const product = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${this.props.match.params.id}`)
     this.setState({
       product: product.data
     })
@@ -22,7 +22,7 @@ class EditProduct extends React.Component {
   onFormSubmit = async (e) => {
     e.preventDefault()
     const { name, price } = this.state
-    await axios.patch(`http://localhost:5000/products/${this.props.match.params.id}`, { name, price })
+    await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/products/${this.props.match.params.id}`, { name, price })
     this.props.history.push(`/${this.props.match.params.id}`)
   }
 
