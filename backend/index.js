@@ -10,9 +10,9 @@ const app = express();
 
 // mongoose
 const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true }
-mongoose.connect("mongodb://localhost:27017/crud-products-gentech", dbOptions, (err) => {
+mongoose.connect(process.env.DB_URL, dbOptions, (err) => {
   if (err) {
-    console.log('not connected ❌')
+    console.log('not connected')
   } else {
     console.log('connected ✅')
   }
